@@ -4,5 +4,8 @@
         <route id="delivery" frontName="delivery">
             <module name="Dailycoco_Dcapp" />
         </route>
+        <route id="company" frontName="company">
+            <module name="Dailycoco_Dcapp" />
+        </route>
     </router>
 </config>
