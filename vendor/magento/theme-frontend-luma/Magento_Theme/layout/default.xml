@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="css/bootstrap.css" />
+        <css src="css/main.css" />
+        <script src="js/vendor/jquery-2.2.4.min.js"></script>
+    </head>
+    <body>
+        <referenceContainer name="header.container">
+            <!--container name="header-wrapper" label="Page Header" as="header-wrapper" htmlTag="div" htmlClass="header content">
+                <block class="Magento\Theme\Block\Html\Header\Logo" name="logo">
+                    <arguments>
+                        <argument name="logo_img_width" xsi:type="number">148</argument>
+                        <argument name="logo_img_height" xsi:type="number">43</argument>
+                    </arguments>
+                </block>
+            </container-->
+            <container name="header-nav-custom">
+                <block class="Dailycoco\Dcapp\Block\DailycocoHeaderNavigation" name="custom_dailycoco_nav" template="Dailycoco_Dcapp::headernav.phtml">
+                </block>
+            </container>
+        </referenceContainer>
+        <!--referenceContainer name="main">
+            <block class="Dailycoco\Hellotest\Block\DailycocoIndexTopBlock" name="custom_dailycoco_parallax" template="Dailycoco_Hellotest::indextop.phtml">
+            </block>
+        </referenceContainer-->
+        <referenceContainer name="header.panel">
+            <block class="Magento\Framework\View\Element\Html\Links" name="header.links">
+                <arguments>
+                    <argument name="css_class" xsi:type="string">header links</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        
+        <referenceContainer name="footer">
+            <block class="Magento\Store\Block\Switcher" name="store_switcher" as="store_switcher" after="footer_links" template="Magento_Store::switch/stores.phtml"/>
+            <block class="Dailycoco\Dcapp\Block\DailycocoIndexFooterBlock" name="custom_dailycoco_footer_script" template="Dailycoco_Dcapp::footerscript.phtml" />
+        </referenceContainer>
+        <referenceBlock name="report.bugs" remove="true"/>
+        <move element="copyright" destination="before.body.end"/>
+    </body>
+</page>

@@ -1,0 +1,33 @@
+<?php
+$customerId = $block->getCustomerId();
+echo $customerId;
+?>
+<header class="default-header">
+	<nav class="navbar navbar-expand-lg  navbar-light">
+		<div class="container">
+			  <a class="navbar-brand" href="/">
+			  	<img src="<?php echo $this->getViewFileUrl('images/logo1.png'); ?>" alt="DailyCoco Logo" width="189" height="70">
+			  </a>
+			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			    <span class="navbar-toggler-icon"></span>
+			  </button>
+
+			  <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
+			    <ul class="navbar-nav">
+					<li><a href="/">Home</a></li>
+					<li><a href="index.html#service">Service</a></li>
+					<li><a href="index.html#blog">blog</a></li>
+					<?php if($customerId != null) { ?>
+						<li><a href="/customer/account">Account</a></li>
+					<?php } else { ?>
+						<li><a href="/customer/account/login">Login</a></li>
+					<?php } ?>
+					<li><a href="/checkout/cart/" class="action showcart">Cart</a></li>
+					<?php if($customerId != null) { ?>
+					<li><a href="/customer/account/logout">Logout</a></li>
+					<?php } ?>
+			    </ul>
+			  </div>						
+		</div>
+	</nav>
+</header>
