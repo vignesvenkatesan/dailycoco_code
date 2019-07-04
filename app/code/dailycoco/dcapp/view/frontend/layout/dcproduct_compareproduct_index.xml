@@ -7,16 +7,16 @@
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <head>
-      <title>DailyCoco - About Us</title>
+      <title>DailyCoco - Products</title>
     </head>
     <body>
     	<referenceBlock name="page.main.title">
             <action method="setPageTitle">
-                <argument translate="true" name="title" xsi:type="string">About Us</argument>
+                <argument translate="true" name="title" xsi:type="string">Farm Fresh - Tender Coconuts</argument>
             </action>
         </referenceBlock>
         <referenceContainer name="content">
-        	<block class="Dailycoco\Dcapp\Block\DailycocoAboutusBlock" name="Dcapp_productdelivery" template="Dailycoco_Dcapp::aboutus.phtml" />
+        	<block class="Dailycoco\Dcapp\Block\DCProductList" name="Dcapp_productdelivery" template="Dailycoco_Dcapp::productcompare.phtml" />
         </referenceContainer>
     </body>
 </page>

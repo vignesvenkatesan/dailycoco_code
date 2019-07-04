@@ -7,5 +7,8 @@
         <route id="company" frontName="company">
             <module name="Dailycoco_Dcapp" />
         </route>
+        <route id="dcproduct" frontName="dcproduct">
+            <module name="Dailycoco_Dcapp" />
+        </route>
     </router>
 </config>

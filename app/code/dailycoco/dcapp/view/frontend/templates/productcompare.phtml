@@ -37,7 +37,7 @@ $productList = $block->getStockProductList();
 	        <li class='pricing-feature'>Daily Delivery : Quantities Subscribed</li>
 	        <!--li class='pricing-feature'>Limited cloud access</li-->
 	      </ul>
-	      <form data-role="tocart-form" data-product-sku="<?php echo $objProduct->getSku(); ?>" action="/checkout/cart/add/product/<?php echo $product['entity_id']; ?>" method="post">
+	      <form data-role="tocart-form" data-product-sku="<?php echo $objProduct->getSku(); ?>" action="<?php echo $block->getBaseUrl() ?>checkout/cart/add/product/<?php echo $product['entity_id']; ?>" method="post">
             <input type="hidden" name="product" value="<?php echo $product['entity_id']; ?>">
             <?= $block->getBlockHtml('formkey') ?>
             <button type="submit"
