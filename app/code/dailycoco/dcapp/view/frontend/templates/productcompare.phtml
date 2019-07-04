@@ -37,7 +37,16 @@ $productList = $block->getStockProductList();
 	        <li class='pricing-feature'>Daily Delivery : Quantities Subscribed</li>
 	        <!--li class='pricing-feature'>Limited cloud access</li-->
 	      </ul>
-	      <button class='pricing-action'>Add to Cart</button>
+	      <form data-role="tocart-form" data-product-sku="<?php echo $objProduct->getSku(); ?>" action="/checkout/cart/add/product/<?php echo $product['entity_id']; ?>" method="post">
+            <input type="hidden" name="product" value="<?php echo $product['entity_id']; ?>">
+            <?= $block->getBlockHtml('formkey') ?>
+            <button type="submit"
+                    title="<?= $block->escapeHtml(__('Add to Cart')) ?>"
+                    class="pricing-action">
+                <span><?= /* @escapeNotVerified */ __('Add to Cart') ?></span>
+            </button>
+          </form>
+	      <!--button class='pricing-action'>Add to Cart</button-->
 	    </div>
 		<?php     $i++;
 				}else{
