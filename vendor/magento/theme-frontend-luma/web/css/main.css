@@ -2900,7 +2900,7 @@ h6 {
 .pricing-palden .pricing-item {
   font-family: 'Open Sans', sans-serif;
   cursor: default;
-  color: #84697c;
+  color: #48750C;
   background: #fff;
   box-shadow: 0 0 10px rgba(46, 59, 125, 0.23);
   border-radius: 20px 20px 10px 10px;
@@ -2909,7 +2909,7 @@ h6 {
 
 @media screen and (min-width: 66.25em) {
   .pricing-palden .pricing-item {
-    margin: 1em -0.5em;
+    margin: 1em 0.5em;
   }
 
   .pricing-palden .pricing__item--featured {
@@ -2983,6 +2983,7 @@ h6 {
 }
 .pricing-palden .pricing-feature {
   padding: 1em 0;
+  font-weight: 600;
 }
 .pricing-palden .pricing-action {
   font-weight: bold;
@@ -3002,3 +3003,51 @@ h6 {
   padding: 5em 0 8.885em 0;
 }
 /* css ends for product compare */
+
+/* css small image response */
+@media (min-width: 1024px) {
+  .sigle-service img{
+    padding-left: 43px; 
+  }
+}
+/* css small image response*/
+
+/* css home page starts*/
+a.banner-home-parallex-button:visited, a.banner-home-parallex-button:link {
+  color: #fff;
+}
+.banner-home-parallex-line1 {
+  font-family: Noteworthy; 
+  font-size: 32px; 
+  color: #48750C; 
+  line-height: 1.2em;
+}
+.banner-home-parallex-line3
+{
+  font-family: Roboto, light; 
+  font-size: 32px; 
+  color: #48750C; 
+  line-height: 1.2em; 
+}
+.banner-home-parallex-line2
+{
+  font-family: Roboto, Black; 
+  font-size: 65px; 
+  color: #48750C; 
+  line-height: 1.2em;
+}
+.banner-home-parallex-button
+{
+  font-family: Roboto, regular; 
+  font-size: 20px; 
+  background-color: #48750C; 
+  color: #ffffff; 
+  padding: 10px;
+}
+@media (max-width: 425px) {
+  .banner-area {
+    background-position-x: -100px !important;
+    background-position-y: 120px !important;
+  }
+}
+/* css home page ends*/
