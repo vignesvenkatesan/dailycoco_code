@@ -164,6 +164,16 @@ class History extends \Magento\Framework\View\Element\Template
         return $this->getUrl('sales/order/reorder', ['order_id' => $order->getId()]);
     }
 
+     /**
+     * @param object $order
+     * @return string
+     */
+    public function getViewDeliveryUrl($order)
+    {
+        return $this->getUrl('delivery/orderdelivery/index/', ['order_id' => $order->getId()]);
+    }
+
+
     /**
      * @return string
      */

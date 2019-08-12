@@ -22,7 +22,7 @@
                 </block>
             </container-->
             <container name="header-nav-custom">
-                <block class="Dailycoco\Dcapp\Block\DailycocoHeaderNavigation" name="custom_dailycoco_nav" template="Dailycoco_Dcapp::headernav.phtml">
+                <block class="Dailycoco\Dcapp\Block\DailycocoHeaderNavigation" name="custom_dailycoco_nav" template="Dailycoco_Dcapp::headernav.phtml" cacheable="false">
                 </block>
             </container>
         </referenceContainer>

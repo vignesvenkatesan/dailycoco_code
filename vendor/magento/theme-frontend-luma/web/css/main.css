@@ -3051,3 +3051,14 @@ a.banner-home-parallex-button:visited, a.banner-home-parallex-button:link {
   }
 }
 /* css home page ends*/
+
+/* order delivery page css */
+.rowtitlehead{
+  font-weight: bold;
+  font-size: 16px;
+  border: 1px;
+}
+.row{
+  padding: 5px 0px;
+}
+/* order delivery page css */

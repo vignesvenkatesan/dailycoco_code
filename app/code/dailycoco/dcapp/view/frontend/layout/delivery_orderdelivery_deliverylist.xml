@@ -10,11 +10,11 @@
     <body>
     	<referenceBlock name="page.main.title">
             <action method="setPageTitle">
-                <argument translate="true" name="title" xsi:type="string">My Order - Deliveries</argument>
+                <argument translate="true" name="title" xsi:type="string">Overall Deliveries</argument>
             </action>
         </referenceBlock>
         <referenceContainer name="content">
-        	<block class="Dailycoco\Dcapp\Block\ProductDelivery" name="Dcapp_productdelivery" template="Dailycoco_Dcapp::sayhello.phtml" cacheable="false"/>
+        	<block class="Dailycoco\Dcapp\Block\ProductDelivery" name="Dcapp_productdelivery" template="Dailycoco_Dcapp::completedelivery.phtml" cacheable="false"/>
         </referenceContainer>
     </body>
 </page>

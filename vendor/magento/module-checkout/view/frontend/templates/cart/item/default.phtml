@@ -88,7 +88,7 @@ $canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinima
                     <span><?= /* @escapeNotVerified */ __('Qty') ?></span>
                 </label>
                 <div class="control qty">
-                    <input id="cart-<?= /* @escapeNotVerified */ $_item->getId() ?>-qty"
+                    <!--input id="cart-<?= /* @escapeNotVerified */ $_item->getId() ?>-qty"
                            name="cart[<?= /* @escapeNotVerified */ $_item->getId() ?>][qty]"
                            data-cart-item-id="<?= $block->escapeHtml($_item->getSku()) ?>"
                            value="<?= /* @escapeNotVerified */ $block->getQty() ?>"
@@ -97,7 +97,19 @@ $canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinima
                            title="<?= $block->escapeHtml(__('Qty')) ?>"
                            class="input-text qty"
                            data-validate="{required:true,'validate-greater-than-zero':true}"
-                           data-role="cart-item-qty"/>
+                           data-role="cart-item-qty"/-->
+                    <select id="cart-<?= /* @escapeNotVerified */ $_item->getId() ?>-qty"
+                           name="cart[<?= /* @escapeNotVerified */ $_item->getId() ?>][qty]"
+                           data-cart-item-id="<?= $block->escapeHtml($_item->getSku()) ?>"
+                           data-validate="{required:true,'validate-greater-than-zero':true}"
+                           data-role="cart-item-qty"
+                           onChange="javascript:this.form.submit();"
+                           style="width: 55px"
+                           >
+                        <?php for($i=1;$i<=10;$i++){ ?>
+                            <option value="<?=$i?>" <?php echo $block->getQty()==$i? 'selected' :'';?>><?=$i?></option>
+                        <?php } ?>
+                    </select>
                 </div>
             </div>
         </td>

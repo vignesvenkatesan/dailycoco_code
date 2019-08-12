@@ -21,6 +21,7 @@ use Magento\Quote\Model\Quote\Payment\ToOrderPayment as ToOrderPaymentConverter;
 use Magento\Sales\Api\Data\OrderInterfaceFactory as OrderFactory;
 use Magento\Sales\Api\OrderManagementInterface as OrderManagement;
 use Magento\Store\Model\StoreManagerInterface;
+use Dailycoco\Dcapp\Model\ProductDelivery\ProductDeliveryStorage;
 
 /**
  * Class QuoteManagement
@@ -139,6 +140,11 @@ class QuoteManagement implements \Magento\Quote\Api\CartManagementInterface
      * @var \Magento\Customer\Api\AddressRepositoryInterface
      */
     private $addressRepository;
+
+    /**
+     * @var \Dailycoco\Dcapp\Block\ProductDelivery\ProductDeliveryStorage
+     */
+    protected $productDelivery;
 
     /**
      * @var array
@@ -375,6 +381,10 @@ class QuoteManagement implements \Magento\Quote\Api\CartManagementInterface
         $this->checkoutSession->setLastOrderId($order->getId());
         $this->checkoutSession->setLastRealOrderId($order->getIncrementId());
         $this->checkoutSession->setLastOrderStatus($order->getStatus());
+
+        $productDelivery = ObjectManager::getInstance()->get(\Dailycoco\Dcapp\Model\ProductDelivery\ProductDeliveryStorage::class);
+        $productDelivery->addProductDelivery($order->getId());
+        //$productDelivery->addProductDelivery(26);
 
         $this->eventManager->dispatch('checkout_submit_all_after', ['order' => $order, 'quote' => $quote]);
         return $order->getId();

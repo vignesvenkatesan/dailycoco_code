@@ -2,7 +2,7 @@
 namespace Dailycoco\Dcapp\Controller\OrderDelivery;
 
 
-class Index extends \Magento\Framework\App\Action\Action
+class DeliveryList extends \Magento\Framework\App\Action\Action
 {
 	protected $_pageFactory;
 

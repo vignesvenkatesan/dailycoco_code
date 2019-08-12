@@ -8,6 +8,8 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="checkout" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="content">
+            <block class="Dailycoco\Dcapp\Block\DailycocoHeaderNavigation" name="custom_dailycoco_nav_checkout" template="Dailycoco_Dcapp::headernavlogo.phtml" cacheable="false">
+            </block>
             <block class="Magento\Checkout\Block\Onepage" name="checkout.root" template="Magento_Checkout::onepage.phtml" cacheable="false">
                 <arguments>
                     <argument name="jsLayout" xsi:type="array">
