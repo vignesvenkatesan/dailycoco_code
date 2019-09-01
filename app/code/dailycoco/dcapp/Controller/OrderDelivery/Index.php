@@ -29,8 +29,6 @@ class Index extends \Magento\Framework\App\Action\Action
 		$resultPage = $this->_pageFactory->create();
 
 		$navigationBlock = $resultPage->getLayout()->getBlock('customer_account_navigation');
-		//var_dump($order->getAllItems());
-		//exit;
 
 		return $resultPage;
 	}

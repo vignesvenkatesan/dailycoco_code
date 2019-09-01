@@ -1,0 +1,41 @@
+<?php
+$deliveries = $block->getOrderDeliveryForToday();
+?>
+<div class="admin__table-wrapper">
+    <table class="data-table admin__table-primary edit-order-table">
+        <thead>
+            <tr class="headings">
+            	<td>
+            		<b>Product</b>
+            	</td>
+            	<td>
+            		<b>Quantity</b>
+            	</td>
+            	<td>
+            		<b>Address</b>
+            	</td>
+            	<td>
+            		<b>Pincode</b>
+            	</td>
+            </tr>
+        </thead>
+        <tbody>
+        	<?php foreach($deliveries as $delivery) {?>
+        		<tr>
+        			<td>
+        				<?php echo $delivery['product_sku'];?>
+        			</td>
+        			<td>
+        				<?php echo $delivery['quantity'];?>
+        			</td>
+        			<td>
+        				<?php echo $delivery['address'];?>
+        			</td>
+        			<td>
+        				<?php echo $delivery['postcode'];?>
+        			</td>
+        		</tr>
+        	<?php }?>
+        </tbody>
+    </table>
+</div>

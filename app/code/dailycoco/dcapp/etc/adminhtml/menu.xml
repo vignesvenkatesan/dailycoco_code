@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+  <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+      <menu>
+        <add id="Dailycoco_Dcapp::greetings" title="Delivery" translate="title" module="Dailycoco_Dcapp" parent="Magento_Sales::sales" sortOrder="50" dependsOnModule="Dailycoco_Dcapp" resource="Dailycoco_Dcapp::greetings"/>
+        <add id="Dailycoco_Dcapp::greetings_helloworld" title="Today's Delivery" translate="title" module="Dailycoco_Dcapp" parent="Dailycoco_Dcapp::greetings" sortOrder="10" dependsOnModule="Dailycoco_Dcapp" action="dailycocoadmin/orderdelivery" resource="Dailycoco_Dcapp::greetings"/>
+      </menu>
+  </config>

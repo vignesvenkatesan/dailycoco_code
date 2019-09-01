@@ -80,7 +80,19 @@ class ProductDeliveryStorage
     {
         $tableName = $this->resource->getTableName(self::TABLE_NAME);
 
-        $sql = "SELECT dl.product_sku,sum(dl.quantity) as quantity,dl.delivery_status, dl.delivery_date from ".self::TABLE_NAME." as dl inner join sales_order as so on so.entity_id =  dl.order_id where so.customer_id =".$customerId." and dl.delivery_status = 'Yet to Start' group by dl.delivery_date";
+        $today = date("Y-m-d", strtotime('+5 hour +30 minutes',strtotime(date("Y-m-d H:i:s"))));
+
+        $sql = "SELECT dl.product_sku,sum(dl.quantity) as quantity,dl.delivery_status, dl.delivery_date from ".self::TABLE_NAME." as dl inner join sales_order as so on so.entity_id =  dl.order_id where so.customer_id =".$customerId." and dl.delivery_status = 'Yet to Start' and dl.delivery_date >= '".$today."' group by dl.delivery_date order by dl.delivery_date";
+        return $this->connection->fetchAll($sql);
+    }
+
+    public function getOrderDeliveryListForToday()
+    {
+        $tableName = $this->resource->getTableName(self::TABLE_NAME);
+
+        $today = date("Y-m-d", strtotime('+5 hour +30 minutes',strtotime(date("Y-m-d H:i:s"))));
+
+        $sql = "SELECT dl.product_sku, dl.quantity, dl.delivery_status, dl.delivery_date, concat(soa.firstname,' ',soa.lastname, ',<br/>', soa.street,',<br/>', soa.city) as address, soa.postcode from ".self::TABLE_NAME." as dl inner join sales_order as so on so.entity_id =  dl.order_id left join sales_order_address soa on soa.parent_id=so.entity_id where dl.delivery_date ='".$today."' and dl.delivery_status = 'Yet to Start' and soa.address_type='shipping'";
         return $this->connection->fetchAll($sql);
     }
 
@@ -97,10 +109,6 @@ class ProductDeliveryStorage
 			$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
    			$product = $objectManager->create('Magento\Catalog\Model\Product')->load($item->getId());
    			$prdSKU = str_replace(" ", '', $productName);
-            if(strstr($prdSKU, "-") >= 1){
-                $arrSKU = explode("-", $prdSKU);
-                $prdSKU = $arrSKU[0];
-            }
    			$productDays = $this->getDaysFromProductName($productName,$item->getSku());
 
    			$prdMaxDays[$prdSKU] = 0;
@@ -161,11 +169,11 @@ class ProductDeliveryStorage
 	}
 
 	function getDaysFromProductName($productName,$prdSKU){
-        if(strstr($prdSKU, "-") >= 1){
+        if(strpos($prdSKU, "-") >= 1){
             $arrSKU = explode("-", $prdSKU);
             $prdSKU = $arrSKU[0];
         }
-        
+
 		$strDays = str_replace($prdSKU, '', $productName);
 
 		if($strDays == ""){

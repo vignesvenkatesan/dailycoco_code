@@ -77,4 +77,10 @@ class ProductDelivery extends \Magento\Framework\View\Element\Template
 
 		return $deliveryDetails;
 	}
+
+	public function getOrderDeliveryForToday()
+	{
+		$deliveryDetails = $this->productDelivery->getOrderDeliveryListForToday();
+		return $deliveryDetails;
+	}
 }
