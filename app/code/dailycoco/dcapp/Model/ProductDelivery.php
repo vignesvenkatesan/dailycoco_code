@@ -1,5 +1,6 @@
 <?php
 namespace Dailycoco\Dcapp\Model;
+use Magento\Framework\App\ResourceConnection;
 
 class ProductDelivery extends \Magento\Framework\Model\AbstractModel implements \Magento\Framework\DataObject\IdentityInterface
 {

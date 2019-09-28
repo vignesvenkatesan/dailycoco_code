@@ -92,11 +92,43 @@ class ProductDeliveryStorage
 
         $today = date("Y-m-d", strtotime('+5 hour +30 minutes',strtotime(date("Y-m-d H:i:s"))));
 
-        $sql = "SELECT dl.product_sku, dl.quantity, dl.delivery_status, dl.delivery_date, concat(soa.firstname,' ',soa.lastname, ',<br/>', soa.street,',<br/>', soa.city) as address, soa.postcode from ".self::TABLE_NAME." as dl inner join sales_order as so on so.entity_id =  dl.order_id left join sales_order_address soa on soa.parent_id=so.entity_id where dl.delivery_date ='".$today."' and dl.delivery_status = 'Yet to Start' and soa.address_type='shipping'";
+        $sql = "SELECT dl.product_sku, sum(dl.quantity) as quantity, dl.delivery_status, dl.delivery_date, concat(soa.firstname,' ',soa.lastname, ',<br/>', soa.street,',<br/>', soa.city) as address, soa.postcode from ".self::TABLE_NAME." as dl inner join sales_order as so on so.entity_id =  dl.order_id left join sales_order_address soa on soa.parent_id=so.entity_id where dl.delivery_date ='".$today."' and dl.delivery_status = 'Yet to Start' and soa.address_type='shipping' group by so.customer_id";
         return $this->connection->fetchAll($sql);
     }
 
+    
+    public function getOrderDeliveryListForDate($searchdate)
+    {
+        $tableName = $this->resource->getTableName(self::TABLE_NAME);
 
+        if($searchdate == "")
+            $searchdate = date("Y-m-d", strtotime('+5 hour +30 minutes',strtotime(date("Y-m-d H:i:s"))));
+
+        $sql = "SELECT dl.product_sku, sum(dl.quantity) as quantity, dl.delivery_status, dl.delivery_date, concat(soa.firstname,' ',soa.lastname, ',<br/>', soa.street,',<br/>', soa.city) as address, soa.postcode, dl.order_delivery_id from ".self::TABLE_NAME." as dl inner join sales_order as so on so.entity_id =  dl.order_id left join sales_order_address soa on soa.parent_id=so.entity_id where dl.delivery_date ='".$searchdate."' and soa.address_type='shipping' group by so.customer_id";
+        return $this->connection->fetchAll($sql);
+    }
+
+    public function updateOrderDeliveryStatus($deliveryStatus)
+    {
+        //try {
+        if(count($deliveryStatus['statusupdate']) >=1){
+            $ids = implode(",", $deliveryStatus['statusupdate']);
+
+            if(strlen($ids) >=1){
+                $updateSQL = "update ".self::TABLE_NAME." set delivery_status ='".$deliveryStatus['status']."' where order_delivery_id in ($ids)";
+
+                return $this->connection->query($updateSQL);
+            }
+            return false;
+        }
+            
+            
+        /*} catch (\Exception $e) {
+            throw $e;
+        }*/
+    }
+
+    //add product for delivery after order completed
     public function addProductDelivery($orderId)
 	{
 		$orderItemsDeliveryDays = array();

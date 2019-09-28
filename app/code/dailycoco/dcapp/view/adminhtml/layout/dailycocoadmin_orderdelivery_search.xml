@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>
+            Search - Order Delivery
+        </title>
+        <css src="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" src_type="url" rel="stylesheet" type="text/css"/>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" src_type="url"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Dailycoco\Dcapp\Block\SearchFilter" template="Dailycoco_Dcapp::orderdeliveries_search.phtml" cacheable="false"/>
+            <block class="Dailycoco\Dcapp\Block\ProductDelivery" template="Dailycoco_Dcapp::orderdeliveries_search_list.phtml" cacheable="false"/>
+        </referenceContainer>
+    </body>
+</page>

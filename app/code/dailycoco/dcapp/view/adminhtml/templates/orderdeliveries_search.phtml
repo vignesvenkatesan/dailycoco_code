@@ -1,0 +1,32 @@
+
+<form id="search_order" action="<?php echo $block->getBaseUrl();?>dailycoco_manage/dailycocoadmin/orderdelivery/search" method="POST">
+<table>
+	<tr>
+		<td>
+			<label class="field-label">
+				<span><?php echo __(' Searcy by Delivery Date')?></span></label></div><br/>
+			</label>
+		</td>
+		<td> &nbsp; &nbsp;
+        </td>
+        <td> &nbsp; &nbsp;
+        </td>
+	</tr>
+	<tr>
+		<td>
+			<input class="control-text" name="searchddate" id=" datepicker " type="text" placeholder="yyyy-mm-dd" value="<?php echo $block->getDataGiven(); ?>">
+		</td>
+		<td> &nbsp; &nbsp;
+        </td>
+		<td class="field-control ">
+			<input name="form_key" type="hidden" value="<?php echo $block->getFormKey(); ?>" />
+			<button class="button" type="submit">Submit</button>
+		</td>
+	</tr>
+</table>
+</form>
+<script>
+  $( function() {
+    $( "#datepicker" ).datepicker();
+  } );
+</script>

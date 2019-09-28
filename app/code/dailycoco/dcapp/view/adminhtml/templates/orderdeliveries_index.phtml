@@ -17,6 +17,9 @@ $deliveries = $block->getOrderDeliveryForToday();
             	<td>
             		<b>Pincode</b>
             	</td>
+            	<td>
+            		<b>Delivery Status</b>
+            	</td>
             </tr>
         </thead>
         <tbody>
@@ -33,6 +36,9 @@ $deliveries = $block->getOrderDeliveryForToday();
         			</td>
         			<td>
         				<?php echo $delivery['postcode'];?>
+        			</td>
+        			<td>
+        				<?php echo $delivery['delivery_status'];?>
         			</td>
         		</tr>
         	<?php }?>

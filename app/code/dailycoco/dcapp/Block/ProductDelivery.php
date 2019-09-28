@@ -16,21 +16,38 @@ class ProductDelivery extends \Magento\Framework\View\Element\Template
     protected $productDelivery;
 
     protected $customerSession;
+
+    /**
+     * @var \Magento\Framework\Data\Form\FormKey
+     */
+    protected $formKey;
+
+    protected $deliveryDate;
 	
 	public function __construct(\Magento\Framework\View\Element\Template\Context $context,
 		\Magento\Framework\App\Request\Http $request,
 		\Magento\Sales\Api\OrderRepositoryInterface $orderRepository,
 		ProductDeliveryStorage $productDelivery,
-		\Magento\Customer\Model\Session $customerSession
+		\Magento\Customer\Model\Session $customerSession,
+		\Magento\Framework\Data\Form\FormKey $formKey
 	)
 	{
 		$this->request = $request;
 		$this->orderRepository = $orderRepository;
 		$this->productDelivery = $productDelivery;
 		$this->customerSession = $customerSession;
+		$this->formKey = $formKey;
 
 		parent::__construct($context);
 	}
+
+	/**
+     * @return \Magento\Framework\Data\Form\FormKey
+     */
+    public function getFormKey()
+    {
+        return $this->formKey->getFormKey();
+    }
 
 	public function getOrderDeliveryDetails()
 	{
@@ -83,4 +100,26 @@ class ProductDelivery extends \Magento\Framework\View\Element\Template
 		$deliveryDetails = $this->productDelivery->getOrderDeliveryListForToday();
 		return $deliveryDetails;
 	}
+
+	public function getOrderDeliveryForDate()
+	{
+		$searchddate = "";
+    	try{
+    		$post = $this->request->getPost();
+    		$searchddate = $post['searchddate'];
+    	}
+    	catch(Exception $e){
+    		$searchddate = "";
+    	}
+    	$this->deliveryDate = $searchddate;
+
+		$deliveryDetails = $this->productDelivery->getOrderDeliveryListForDate($searchddate);
+		return $deliveryDetails;
+	}
+
+	public function getOrderDeliveryDate()
+	{
+		return $this->deliveryDate;
+	}
+	
 }
